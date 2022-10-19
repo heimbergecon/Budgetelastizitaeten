@@ -53,7 +53,7 @@ library(nlme)
 library(tidyr)
 
 #read data:
-data <- fread(here("data/Dataset_output_ec.csv"), header=TRUE)
+data <- fread(here("Dataset_output_ec.csv"), header=TRUE)
 #take Data from year 1991 onward, because 1990 is NA in OECD data
 Germany <- subset(data, year %in% c('1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999','2000','2001','2002','2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013'))
 #Alternative option: take data from 1992 onward:
@@ -158,11 +158,11 @@ Germany$lag_diff_log_unr <- lag(Germany$diff_log_unr)
 
 #additional estimates: DZ, KOM, BMWK
 #PO
-data_add <- fread(here("data/Different PO estimates Spring 2022.csv"), header=TRUE)
+data_add <- fread(here("Different PO estimates Spring 2022.csv"), header=TRUE)
 Germany_PO <- subset(data_add, year %in% c('1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999','2000','2001','2002','2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013'))
 
 #NAWRU
-diff_NAWRU <- fread(here("data/Different NAWRU estimates Spring 2022.csv"), header=TRUE)
+diff_NAWRU <- fread(here("Different NAWRU estimates Spring 2022.csv"), header=TRUE)
 diff_NAWRU <- subset(diff_NAWRU, year %in% c('1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999','2000','2001','2002','2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013'))
 diff_NAWRU <- select(diff_NAWRU, ccode, year, KOM, BMWK, DZ)
 colnames(diff_NAWRU) <- c('ccode', 'year', 'NAWRU_KOM', 'NAWRU_BMWK', 'NAWRU_DZ')
